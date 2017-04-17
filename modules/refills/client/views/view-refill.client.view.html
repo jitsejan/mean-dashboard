@@ -1,0 +1,30 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.refill.name"></h1>
+    <div class="row">
+      <table class="table">
+        <tr><th>Date</th><td ng-bind="vm.refill.date | date:'mediumDate'"></td></tr>
+        <tr><th>Type</th><td ng-bind="vm.refill.type"></td></tr>
+        <tr><th>Volume</th><td ng-bind="vm.refill.volume"></td></tr>
+        <tr><th>Price per litre</th><td ng-bind="vm.refill.price"></td></tr>
+        <tr><th>Cost</th><td ng-bind="vm.refill.cost"></td></tr>
+        <tr><th>Address</th><td ng-bind="vm.refill.address"></td></tr>
+        <tr><th>Kilometres</th><td ng-bind="vm.refill.kilometers"></td></tr>
+        <tr><th>Longitude</th><td ng-bind="vm.refill.longitude"></td></tr>
+        <tr><th>Latitude</th><td ng-bind="vm.refill.latitude"></td></tr>
+        <tr><th>Distance</th><td ng-bind="vm.refill.distance"></td></tr>
+      </table>
+    </div>
+    
+  </div>
+  <div class="pull-right"
+       ng-show="vm.refill.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="refills.edit({ refillId: vm.refill._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+</section>
