@@ -17,16 +17,22 @@
         
         console.log(d3.version);
         console.log(data);
-        
+        // SVG
         var svg = d3.select('svg'),
           margin = { top: 20, right: 20, bottom: 30, left: 50 },
           width = +svg.attr('width') - margin.left - margin.right,
           height = +svg.attr('height') - margin.top - margin.bottom,
           g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
         
-        // 2017-04-18T22:35:19.352Z
+        // Graph title
+        g.append("text")
+          .attr("x", (width / 2))             
+          .attr("y", 0 - (margin.top / 3))
+          .attr("text-anchor", "middle")  
+          .style("font-size", "16px") 
+          .text("Amount of kilometers over time");
+          
         var parseTime = d3.utcParse('%Y-%m-%dT%H:%M:%S.%LZ');
-        
         var x = d3.scaleTime().rangeRound([0, width]);
         var y = d3.scaleLinear().rangeRound([height, 0]);
         
@@ -40,14 +46,12 @@
         
         x.domain(d3.extent(data, function(d) { return parseTime(d.date); }));
         y.domain(d3.extent(data, function(d) { return d.kilometers; }));
-        
-        
+        // X axis
         g.append('g')
           .attr('transform', 'translate(0,' + height + ')')
-          .call(d3.axisBottom(x))
-        .select('.domain')
-          .remove();
-          
+          .attr("class", "x axis")
+          .call(d3.axisBottom(x));
+        // Y axis
         g.append('g')
           .call(d3.axisLeft(y))
         .append('text')
@@ -57,7 +61,7 @@
           .attr('dy', '0.71em')
           .attr('text-anchor', 'end')
           .text('Amount of kilometers');
-        
+        // Line
         g.append('path')
           .datum(data)
           .attr('fill', 'none')
@@ -66,7 +70,6 @@
           .attr('stroke-linecap', 'round')
           .attr('stroke-width', 1.5)
           .attr('d', line);
-        
       }
     };
   }
