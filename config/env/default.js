@@ -3,8 +3,8 @@
 module.exports = {
   app: {
     title: 'JJ\'s dashboard',
-    description: 'Dashboards made with MongoDB, Express, AngularJS, and Node.js',
-    keywords: 'mongodb, express, angularjs, node.js, mongoose, passport, dashboard',
+    description: 'Dashboards made with MongoDB, Express, AngularJS, Node.js and D3',
+    keywords: 'mongodb, express, angularjs, node.js, mongoose, passport, dashboard, d3',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   port: process.env.PORT || 3000,

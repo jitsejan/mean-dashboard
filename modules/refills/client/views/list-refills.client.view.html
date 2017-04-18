@@ -10,7 +10,11 @@
       <span ng-bind="refill.date | date:'mediumDate'"></span>    
     </a>
   </div>
+  <div ng-if="vm.refills.$resolved && vm.refills.length">
+    <div line-chart></div>
+  </div>
   <div class="alert alert-warning text-center" ng-if="vm.refills.$resolved && !vm.refills.length">
     No Refills yet, why don't you <a ui-sref="refills.create">create one</a>?
   </div>
+
 </section>
