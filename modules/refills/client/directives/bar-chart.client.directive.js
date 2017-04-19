@@ -25,12 +25,12 @@
           g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
         
         // Graph title
-        g.append("text")
-          .attr("x", (width / 2))             
-          .attr("y", 0 - (margin.top / 3))
-          .attr("text-anchor", "middle")  
-          .style("font-size", "16px") 
-          .text("Volume per refill");
+        g.append('text')
+          .attr('x', (width / 2))             
+          .attr('y', 0 - (margin.top / 3))
+          .attr('text-anchor', 'middle')  
+          .style('font-size', '16px') 
+          .text('Volume per refill');
           
         var parseTime = d3.utcParse('%Y-%m-%dT%H:%M:%S.%LZ');
         var x = d3.scaleBand().range([0, width]).padding(0.1);
@@ -42,27 +42,27 @@
         // X axis
         g.append('g')
           .attr('transform', 'translate(0,' + height + ')')
-          .attr("class", "x axis")
-          .call(d3.axisBottom(x).tickFormat(function(d){ return parseTime(d).toISOString().substring(0, 10)}))
-          .selectAll("text")	
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", function(d) {
-                return "rotate(-65)" 
-                });
+          .attr('class', 'x axis')
+          .call(d3.axisBottom(x).tickFormat(function(d){ return parseTime(d).toISOString().substring(0, 10);}))
+          .selectAll('text')	
+            .style('text-anchor', 'end')
+            .attr('dx', '-.8em')
+            .attr('dy', '.15em')
+            .attr('transform', function(d) {
+              return 'rotate(-65)';
+            });
         // Y axis
         g.append('g')
-          .call(d3.axisLeft(y))
+          .call(d3.axisLeft(y));
         // Bars
-        g.selectAll(".bar")
+        g.selectAll('.bar')
           .data(data)
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return x(d.date); })
-          .attr("width", x.bandwidth())
-          .attr("y", function(d) { return y(d.volume); })
-          .attr("height", function(d) { return height - y(d.volume); });
+        .enter().append('rect')
+          .attr('class', 'bar')
+          .attr('x', function(d) { return x(d.date); })
+          .attr('width', x.bandwidth())
+          .attr('y', function(d) { return y(d.volume); })
+          .attr('height', function(d) { return height - y(d.volume); });
       }
     };
   }
