@@ -43,7 +43,7 @@
         g.append('g')
           .attr('transform', 'translate(0,' + height + ')')
           .attr("class", "x axis")
-          .call(d3.axisBottom(x).tickFormat(function(d){ return d}))
+          .call(d3.axisBottom(x).tickFormat(function(d){ return parseTime(d).toISOString().substring(0, 10)}))
           .selectAll("text")	
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
@@ -63,7 +63,6 @@
           .attr("width", x.bandwidth())
           .attr("y", function(d) { return y(d.volume); })
           .attr("height", function(d) { return height - y(d.volume); });
-
       }
     };
   }
