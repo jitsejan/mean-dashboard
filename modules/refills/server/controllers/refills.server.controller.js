@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  * List of Refills
  */
 exports.list = function(req, res) {
-  Refill.find().sort('-date').populate('user', 'displayName').exec(function(err, refills) {
+  Refill.find().sort('+date').populate('user', 'displayName').exec(function(err, refills) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

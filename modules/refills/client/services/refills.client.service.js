@@ -10,7 +10,7 @@
 
   function RefillsService($resource) {
     return $resource('api/refills/:refillId', {
-      refillId: '@_id'
+      refillId: '@_id',
     }, {
       update: {
         method: 'PUT'

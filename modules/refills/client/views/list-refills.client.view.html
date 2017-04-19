@@ -1,4 +1,7 @@
 <style>
+body {
+  min-height: 100%;
+}
   path { 
     stroke: steelblue;
     stroke-width: 2;
@@ -12,6 +15,10 @@
       stroke-width: 1;
       shape-rendering: crispEdges;
   }
+  
+  .bar { fill: steelblue; }
+
+  
 </style>
 <section>
   <div class="page-header">
@@ -27,6 +34,7 @@
   </div>
   <div ng-if="vm.refills.$resolved && vm.refills.length">
     <div line-chart></div>
+    <div bar-chart></div>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.refills.$resolved && !vm.refills.length">
     No Refills yet, why don't you <a ui-sref="refills.create">create one</a>?
