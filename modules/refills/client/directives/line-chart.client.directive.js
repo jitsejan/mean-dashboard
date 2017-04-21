@@ -14,9 +14,6 @@
       link: function postLink(scope, element, attrs) {
         var d3 = $window.d3;
         var data = scope.vm.refills;
-        
-        console.log(d3.version);
-        console.log(data);
         // SVG
         var svg = d3.select('svg'),
           margin = { top: 20, right: 20, bottom: 30, left: 50 },
@@ -32,16 +29,16 @@
           .style('font-size', '16px') 
           .text('Amount of kilometers over time');
           
-        var parseTime = d3.utcParse('%Y-%m-%dT%H:%M:%S.%LZ');
-        var formatTime = d3.timeFormat('%e %B');
-        var x = d3.scaleTime().rangeRound([0, width]);
-        var y = d3.scaleLinear().rangeRound([height, 0]);
+        var parseTime = d3.time.format('%Y-%m-%dT%H:%M:%S.%LZ').parse;
+        var formatTime = d3.time.format('%e %B');
+        var x = d3.time.scale().range([0, width]);
+        var y = d3.scale.linear().rangeRound([height, 0]);
         // Define the div for the tooltip
         var div = d3.select('body').append('div')	
             .attr('class', 'tooltip')				
             .style('opacity', 0);
             
-        var line = d3.line()
+        var line = d3.svg.line()
           .x(function(d) { 
             return x(parseTime(d.date)); 
           })
@@ -55,10 +52,10 @@
         g.append('g')
           .attr('transform', 'translate(0,' + height + ')')
           .attr('class', 'x axis')
-          .call(d3.axisBottom(x));
+          .call(d3.svg.axis().scale(x).orient('bottom'));
         // Y axis
         g.append('g')
-          .call(d3.axisLeft(y))
+          .call(d3.svg.axis().scale(y).orient('left'))
         .append('text')
           .attr('fill', '#000')
           .attr('transform', 'rotate(-90)')

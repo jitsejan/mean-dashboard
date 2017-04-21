@@ -14,9 +14,6 @@
       link: function postLink(scope, element, attrs) {
         var d3 = $window.d3;
         var data = scope.vm.refills;
-        
-        console.log(d3.version);
-        console.log(data);
         // SVG
         var svg = d3.select('svg.bar-chart'),
           margin = { top: 20, right: 20, bottom: 130, left: 50 },
@@ -32,9 +29,9 @@
           .style('font-size', '16px') 
           .text('Volume per refill');
           
-        var parseTime = d3.utcParse('%Y-%m-%dT%H:%M:%S.%LZ');
-        var x = d3.scaleBand().range([0, width]).padding(0.1);
-        var y = d3.scaleLinear().rangeRound([height, 0]);
+        var parseTime = d3.time.format('%Y-%m-%dT%H:%M:%S.%LZ').parse;
+        var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
+        var y = d3.scale.linear().range([height, 0]);
         
         x.domain(data.map(function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.volume; })]);
@@ -43,7 +40,7 @@
         g.append('g')
           .attr('transform', 'translate(0,' + height + ')')
           .attr('class', 'x axis')
-          .call(d3.axisBottom(x).tickFormat(function(d){ return parseTime(d).toISOString().substring(0, 10);}))
+          .call(d3.svg.axis().scale(x).orient('bottom').tickFormat(function(d){ return parseTime(d).toISOString().substring(0, 10);}))
           .selectAll('text')	
             .style('text-anchor', 'end')
             .attr('dx', '-.8em')
@@ -53,14 +50,14 @@
             });
         // Y axis
         g.append('g')
-          .call(d3.axisLeft(y));
+          .call(d3.svg.axis().scale(y).orient('left'));
         // Bars
         g.selectAll('.bar')
           .data(data)
         .enter().append('rect')
           .attr('class', 'bar')
           .attr('x', function(d) { return x(d.date); })
-          .attr('width', x.bandwidth())
+          .attr('width', x.rangeBand())
           .attr('y', function(d) { return y(d.volume); })
           .attr('height', function(d) { return height - y(d.volume); });
       }
