@@ -4,12 +4,12 @@ body {
 }
   path { 
     stroke: steelblue;
-    stroke-width: 2;
+    stroke-width: 1;
     fill: none;
   }
   circle { 
     stroke: steelblue;
-    stroke-width: 2;
+    stroke-width: 1;
     fill: steelblue
   }
   .axis path,
@@ -35,6 +35,27 @@ div.tooltip {
     pointer-events: none;			
 }
 
+.sphere {
+  fill: #fff;
+}
+
+.land {
+  fill: #000;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
   
 </style>
 <section>
@@ -52,9 +73,10 @@ div.tooltip {
   <div ng-if="vm.refills.$resolved && vm.refills.length">
     <div line-chart></div>
     <div bar-chart></div>
+    <div world-map></div>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.refills.$resolved && !vm.refills.length">
     No Refills yet, why don't you <a ui-sref="refills.create">create one</a>?
   </div>
-
+  
 </section>

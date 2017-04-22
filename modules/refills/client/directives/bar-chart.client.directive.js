@@ -30,7 +30,7 @@
           .text('Volume per refill');
           
         var parseTime = d3.time.format('%Y-%m-%dT%H:%M:%S.%LZ').parse;
-        var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
+        var x = d3.scale.ordinal().rangeRoundBands([0, width], 0.5);
         var y = d3.scale.linear().range([height, 0]);
         
         x.domain(data.map(function(d) { return d.date; }));
