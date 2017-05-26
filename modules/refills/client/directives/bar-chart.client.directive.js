@@ -35,7 +35,6 @@
         
         x.domain(data.map(function(d) { return d.date; }));
         y.domain([0, d3.max(data, function(d) { return d.volume; })]);
-        
         // X axis
         g.append('g')
           .attr('transform', 'translate(0,' + height + ')')

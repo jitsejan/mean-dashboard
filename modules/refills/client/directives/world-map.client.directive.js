@@ -90,30 +90,10 @@
             .style('fill', 'red');
         });
         
-        
-        
         svg
           .call(zoom)
           .call(zoom.event);
         
-        // function zoomed() {
-        //   projection
-        //       .translate(zoom.translate())
-        //       .scale(zoom.scale());
-        
-          
-          
-        //   g.selectAll('path')
-        //       .attr('d', path);
-            
-        //   // g.attr('transform','translate('+ 
-        //   //     d3.event.translate.join(',')+')scale('+d3.event.scale+')');
-        //   // g.selectAll('circle')
-        //   //   .attr('d', path.projection(projection));
-        //   // g.selectAll('path')  
-        //   //   .attr('d', path.projection(projection)); 
-              
-        // }
       }
     };
   }
